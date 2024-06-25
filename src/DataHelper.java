@@ -48,7 +48,6 @@ public class DataHelper {
         }
 
         return randomIntegers;
-
     }
 
     public static Map<Integer, Integer> getFrequencyMap(List<Integer> list) {
