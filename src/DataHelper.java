@@ -46,7 +46,6 @@ public class DataHelper {
                 randomIntegers.add(value);
             }
         }
-
         return randomIntegers;
     }
 
