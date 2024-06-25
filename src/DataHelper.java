@@ -12,7 +12,6 @@ public class DataHelper {
         return numbers;
     }
 
-    // restituisce una lista di numeri interi casuali compresi tra 0 e 10
     public static List<Integer> getRandomInteger(int size) {
         List<Integer> numbers = new ArrayList<>();
         addRandom(numbers, size, 11);
@@ -20,7 +19,6 @@ public class DataHelper {
         return numbers;
     }
 
-    // restituisce una lista di numeri interi casuali compresi tra 0 e max
     public static List<Integer> getRandomInteger(int size, int max) {
         List<Integer> numbers = new ArrayList<>();
         addRandom(numbers, size, max);
@@ -28,7 +26,6 @@ public class DataHelper {
         return numbers;    
     }
 
-    // restituisce una lista di numeri interi casuali compresi tra min e max
     public static List<Integer> getRandomInteger(int size, int min, int max) {
         List<Integer> numbers = new ArrayList<>();
         Random random = new Random();
