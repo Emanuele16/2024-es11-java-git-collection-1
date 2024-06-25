@@ -1,66 +1,72 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class DataHelper {
 
-    private static List<Integer> addRandom(List<Integer> numbers, int size, int bound){
-        Random randomNum = new Random();
-        for(int i=0; i<size; i++){
-            numbers.add(randomNum.nextInt(bound));
-        }
-        return numbers;
-    }
-
     public static List<Integer> getRandomInteger(int size) {
-        List<Integer> numbers = new ArrayList<>();
-        addRandom(numbers, size, 11);
-
-        return numbers;
+        return getRandomInteger(size, 0, 10);
     }
 
     public static List<Integer> getRandomInteger(int size, int max) {
-        List<Integer> numbers = new ArrayList<>();
-        addRandom(numbers, size, max);
-
-        return numbers;    
+        return getRandomInteger(size, 0, max);
     }
 
     public static List<Integer> getRandomInteger(int size, int min, int max) {
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> randomIntegers = new ArrayList<>();
         Random random = new Random();
-
         for (int i = 0; i < size; i++) {
-            int randomNum = random.nextInt((max - min) + 1) + min;
-            numbers.add(randomNum);
+            randomIntegers.add(random.nextInt(max - min + 1) + min);
         }
-
-        return numbers;    
+        return randomIntegers;
     }
 
-    // restituisce una lista di numeri casuali NON DUPLICATI compresi tra 0 e 10
-    // public static ??? getRandomUniqueInteger(int size) {
-    //
-    // return null;
-    // }
+    public static List<Integer> getRandomUniqueInteger(int size) {
+        return getRandomUniqueInteger(size, 0, 10);
+    }
 
-    // // restituisce una lista di numeri casuali NON DUPLICATI compresi tra 0 e max
-    // public static ??? getRandomUniqueInteger(int size, int max) {
-    //
-    // return null;
-    // }
+    public static List<Integer> getRandomUniqueInteger(int size, int max) {
+        return getRandomUniqueInteger(size, 0, max);
+    }
 
-    // // restituisce una lista di numeri casuali NON DUPLICATI compresi tra min e
-    // max
-    // public static ??? getRandomUniqueInteger(int size, int min, int max) {
-    //
-    // return null;
-    // }
+    public static List<Integer> getRandomUniqueInteger(int size, int min, int max) {
+        List<Integer> randomIntegers = new ArrayList<>();
+        Random random = new Random();
+        int value;
 
-    // restituisce una mappa di frequenza di numeri interi
-    // public static ??? getFrequencyMap(List<Integer> list) {
-    //
-    // return null;
-    // }
+        if (size > (max - min + 1)) {
+            throw new IllegalArgumentException("Il numero è maggiore del numero di interi univoci disponibili.");
+        }
 
+        while (randomIntegers.size() < size) {
+            value = random.nextInt(max - min + 1) + min;
+            if (!randomIntegers.contains(value)) {
+                randomIntegers.add(value);
+            }
+        }
+
+        return randomIntegers;
+
+    }
+
+    public static Map<Integer, Integer> getFrequencyMap(List<Integer> list) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int number : list) {
+            map.put(number, map.getOrDefault(number, 0) + 1);
+        }
+        return map;
+    }
+
+    public static String frequencyMapToString(Map<Integer, Integer> map) {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            sb.append(entry.getKey())
+              .append(" appare ")
+              .append(entry.getValue())
+              .append(" volte\n");
+        }
+        return sb.toString();
+    }
 }
